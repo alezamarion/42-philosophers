@@ -5,7 +5,8 @@
 
 void	*routine()
 {
-	printf("Test from threads\n");
+	//threads have same process id, processes have different pids
+	printf("Test from threads, process id: %d\n", getpid());
 	sleep(3);
 	printf("Ending thread\n");
 }
@@ -46,4 +47,14 @@ gcc -g -pthread thread.c -o thread
 On most systems that use stabs format, -g enables use of extra debugging information that only GDB can use; 
 this extra information makes debugging work better in GDB but will probably make other debuggers crash or refuse to read the program. 
 If you want to control for certain whether to generate the extra information, use -gstabs+, -gstabs, -gxcoff+, -gxcoff, or -gvms
+
+1 - Processes can contain multiple threads. Threads have same IDs.
+	A single process can have multiple threads.
+2 - Address space: With threads all variables are in same space. All threads can access all variables.
+	Forking duplicates every variables to the child processes. You can modify then individually.
+	Threads have shared memory, if you modify an variable, it happens in all threads from the same calling process.
+
+
+
+
 */

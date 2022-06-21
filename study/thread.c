@@ -18,7 +18,7 @@ int		main(int argc, char *argv[])
 
 	//starts a new thread in the calling process | return 0 on success or an error number
 	pthread_create(&thread1, NULL, &routine, NULL);
-	pthread_create(&thread1, NULL, &routine, NULL);
+	pthread_create(&thread2, NULL, &routine, NULL);
 	
 	//wait to finish execution
 	pthread_join(thread1, NULL);
@@ -53,8 +53,4 @@ If you want to control for certain whether to generate the extra information, us
 2 - Address space: With threads all variables are in same space. All threads can access all variables.
 	Forking duplicates every variables to the child processes. You can modify then individually.
 	Threads have shared memory, if you modify an variable, it happens in all threads from the same calling process.
-
-
-
-
 */

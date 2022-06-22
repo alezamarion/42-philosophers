@@ -3,6 +3,8 @@
 #include <pthread.h>
 #include <unistd.h>
 
+//summing numbers from an array
+
 int primes[10] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
 
 void* routine(void* arg) 

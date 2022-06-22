@@ -29,16 +29,12 @@ int		main(int argc, char *argv[])
     {
         //starts a new thread in the calling process | return 0 on success or an error number
 	    if (pthread_create(&thread[i], NULL, &routine, NULL) != 0)
-        {
             return 1;
-        }
         printf("Thread %d has started\n", i);
  
     	//wait to finish execution
     	if (pthread_join(thread[i], NULL) != 0)
-        {
             return 2;
-        }
          printf("Thread %d has finished execution\n", i);
     }
     */
@@ -48,18 +44,14 @@ int		main(int argc, char *argv[])
     {
         //starts a new thread in the calling process | return 0 on success or an error number
 	    if (pthread_create(&thread[i], NULL, &routine, NULL) != 0)
-        {
             return 1;
-        }
         printf("Thread %d has started\n", i);
     }
     for (i = 0; i < 4; i++)
     {
     	//wait to finish execution
     	if (pthread_join(thread[i], NULL) != 0)
-        {
             return 2;
-        }
          printf("Thread %d has finished execution\n", i);
     }
     pthread_mutex_destroy(&mutex);

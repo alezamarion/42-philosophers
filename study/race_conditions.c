@@ -25,23 +25,15 @@ int		main(int argc, char *argv[])
 
 	//starts a new thread in the calling process | return 0 on success or an error number
 	if (pthread_create(&thread1, NULL, &routine, NULL) != 0)
-    {
         return 1;
-    }
 	if (pthread_create(&thread2, NULL, &routine, NULL) != 0)
-    {
         return 2;
-    }
 
 	//wait to finish execution
 	if (pthread_join(thread1, NULL) != 0)
-    {
         return 3;
-    }
 	if (pthread_join(thread2, NULL) != 0)
-    {
         return 4;
-    }
     pthread_mutex_destroy(&mutex);
     printf("Number of mails: %d\n", mails);
 	return (0);

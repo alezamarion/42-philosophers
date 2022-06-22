@@ -20,13 +20,9 @@ int     main(int argc, char *argv[])
 
     srand(time(NULL));
     if (pthread_create(&thread, NULL, &roll_dice, NULL) != 0)
-    {
         return (1);
-    }
     if (pthread_join(thread, NULL) != 0)
-    {
         return (2);
-    }
     return (0);
 }
 */
@@ -49,13 +45,9 @@ int     main(int argc, char *argv[])
    
     srand(time(NULL));
     if (pthread_create(&thread, NULL, &roll_a_dice, NULL) != 0)
-    {
         return (1);
-    }
     if (pthread_join(thread, (void**) &result) != 0)
-    {
         return (2);
-    }
     //just to check that we are dealing with the same memory location of line 39
     printf("Main result:    %p\n", result);
   

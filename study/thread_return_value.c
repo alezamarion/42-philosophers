@@ -48,6 +48,7 @@ int     main(int argc, char *argv[])
         return (1);
     if (pthread_join(thread, (void**) &result) != 0)
         return (2);
+
     //just to check that we are dealing with the same memory location of line 39
     printf("Main result:    %p\n", result);
   

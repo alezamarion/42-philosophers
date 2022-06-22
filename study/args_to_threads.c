@@ -67,13 +67,8 @@ int     main(int argv, char *argc[])
         if (pthread_join(thread[i], NULL) != 0)
             perror("Failed to join thread");
     }
-
-
     return (0);
 }
-
-
-
 
 /*
     First version:
@@ -85,7 +80,8 @@ int     main(int argv, char *argc[])
 
     An soluction in to allocate some memory to i, for each thread
     You dealocate it inside routine() function
-    
+
+    Another soluction is to pass address of position in array: "primes + i" 
 */
 
 

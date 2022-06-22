@@ -57,4 +57,26 @@ int		main(int argc, char *argv[])
     an thread and then another. It protects against other threads executing same code at same time - in this case
     routine().
 
+    The code section where multiple threads modify the same object in the memory is called a critical section. 
+    Generally, the critical section should be protected with some type of lock that would force other threads to wait
+    until the current thread finishes the execution and ensures that they all get the correct incremented value. 
+    Mutex is one of the lock types that can be utilized to guard an critical section like this.
+
+    As per operating system terminology, mutexes and semaphores are kernel resources that provide synchronization 
+    services (also called synchronization primitives). 
+
+    Strictly speaking, a mutex is a locking mechanism used to synchronize access to a resource. 
+    Only one task (can be a thread or process based on OS abstraction) can acquire the mutex. It means there is 
+    ownership associated with a mutex, and only the owner can release the lock (mutex). 
+
+    A mutex provides mutual exclusion, either producer or consumer can have the key (mutex) and proceed with their 
+    work. As long as the buffer is filled by the producer, the consumer needs to wait, and vice versa, for example.
+
+    A mutex is a lock. Only one state (locked/unlocked) is associated with it. 
+    The programmer must unlock the mutex as many number times as it was locked. 
+    
+    Semaphore is signaling mechanism (“I am done, you can carry on” kind of signal). For example, if you are listening
+    to songs (assume it as one task) on your mobile phone and at the same time, your friend calls you, an interrupt 
+    is triggered upon which an interrupt service routine (ISR) signals the call processing task to wakeup. 
+
 */

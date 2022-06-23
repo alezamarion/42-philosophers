@@ -44,4 +44,6 @@ int main(int argc, char *argv[])
 /*
     An barrier object stops threads execution until there are enough threads waiting.
     If there are the requested number of threads, the barrier is lifted and all threads can continue execution
+    If you have an barrier of 3 and 10 threads, 9 will pass in group of three and one will not pass barrier
+    It's a nice way to control the execution flow of multiple threads
 */

@@ -77,4 +77,7 @@ int main(int argc, char* argv[])
     would be executed and function will return. 
     If pthread_mutex_trylock(&mutex) is unsuccessful(i.e. it returns -1) then else part would be executed and 
     hopefully thread busy would be printed and function would return without executing critical section.
+
+    It does not make sense to call pthread_mutex_trylock() without testing the result.
+    If it fails to acquire the mutex, you should not enter the critical section, and you should not unlock it later.
 */

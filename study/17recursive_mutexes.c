@@ -15,6 +15,7 @@ void    *routine(void *args)
     fuel += 50;
     printf("Incremented fuel to: %d\n", fuel);
     pthread_mutex_unlock(&mutex);
+    pthread_mutex_unlock(&mutex);
 }
 
 int     main(int argc, char *argv[])
@@ -23,8 +24,9 @@ int     main(int argc, char *argv[])
     int                 i;
 
     pthread_mutexattr_t recursive_mutex;        //set this object and functions to work with recursive mutex
-    pthread_mutexattr_t_init(&recursive_mutex);
-    pthread_mutexattr_settype(&recursive_mutex, PTHREAD_MUTEX_RECURSIVE);
+    pthread_mutexattr_init(&recursive_mutex);
+    pthread_mutexattr_settype(&recursive_mutex, PTHREAD_MUTEX_RECURSIVE); //this macro counts mutexes locks and then
+                                                                          //counts to zero to allow unlock an thread
 
     pthread_mutex_init(&mutex, &recursive_mutex); //you then use the second argument of pthread_mutex_init()
  
@@ -40,6 +42,6 @@ int     main(int argc, char *argv[])
     }
     printf("Fuel: %d\n", fuel);
     pthread_mutex_destroy(&mutex);
-    pthread_attr_destroy(&recursive_mutex); //you'll have to destroy this recursive mutex also
+    pthread_mutexattr_destroy(&recursive_mutex); //you'll have to destroy this recursive mutex also
     return (0);
 }

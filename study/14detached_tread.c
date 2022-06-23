@@ -40,6 +40,7 @@ void    *routine(void *args)
 //    pthread_exit(0); //here threads can finish before main exits
 //}
 
+
 /*
     second version: creating detached threads from beginning, instead of changing after you create an thread
     you will use the second parameter of pthread_create(): you will need a second object, an 
@@ -67,13 +68,8 @@ int     main(int argc, char *argv[])
     pthread_exit(0);
 }
 
-
-
-
 /*
     pthread_detach() used when you have a long running process you want to start, inside the main thread
     but you do not want to let main thread keep on running, because it will take a long time to execute all 
     threads. So main starts threads and then forget about it.
-
-
 */

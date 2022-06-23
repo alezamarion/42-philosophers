@@ -64,3 +64,17 @@ int main(int argc, char* argv[])
     return 0;
 }
 
+/*
+    The questions you have to ask yourself are: Can I afford to wait for the lock? 
+    Is it okay if I don't obtain the lock (because I can retry later or because I have a way of doing the work 
+    without needing the lock)? 
+    When you answer those questions, it should be fairly clear which one you want. 
+    
+    Use the blocking one when you need the lock unconditionally. 
+    Use the nonblocking one when you don't want to wait and have an alternative thing to do when you can't get the lock
+
+    if pthread_mutex_trylock(&mutex) is successfull (i.e. it returns 0) then first part (i.e. critical section) 
+    would be executed and function will return. 
+    If pthread_mutex_trylock(&mutex) is unsuccessful(i.e. it returns -1) then else part would be executed and 
+    hopefully thread busy would be printed and function would return without executing critical section.
+*/

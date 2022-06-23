@@ -38,5 +38,12 @@ int     main(int argc, char *argv[])
     pthread_create call.
     So, an pthread_t type will store pthreads id number.
     You can also use pthread_self() function to get pthread number id.
+    It's not a good practice to work with pthread_t values: pthread_t have to be treated as an opaque data type, meaning
+    that it's not always garanteed that it's going to be of unsigned long type, it might be an unsigned long long or an 
+    integer or a character or even an structure that has certain members.
 
+    You could use #include <sys/syscall.h> and gettid() to get thread id:
+    printf("%d\n", (pid_t) syscall(SYS_gettid));
+    But it only work on linux, and it is the internal thread id inside the OS, does not have anything to do with pthread_t 
+    (this works above OS)
 */

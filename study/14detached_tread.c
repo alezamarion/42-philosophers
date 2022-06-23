@@ -45,6 +45,8 @@ void    *routine(void *args)
     you will use the second parameter of pthread_create(): you will need a second object, an 
     ptread_attr_t data type, and you will have to cal pthread_attr_init() and pthread_attr_setdetachstate()
     After all this, you'll have to destroy the object using pthread_attr_destroy()
+    OBS: In first version, an thread can start execution and finish it before pthread_detach() is called
+    So, in this second version, there is not a gap between setting a thread and detaching it
 */
 int     main(int argc, char *argv[])
 {

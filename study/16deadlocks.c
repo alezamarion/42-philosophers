@@ -67,7 +67,7 @@ int     main(int argc, char *argv[])
 
     pthread_mutex_init(&mutex_fuel, NULL);
     pthread_mutex_init(&mutex_water, NULL);
-   for (i = 0; i < THREAD_NUM; i++)
+    for (i = 0; i < THREAD_NUM; i++)
     {
         if (pthread_create(&thread[i], NULL, &routine, NULL) != 0)
             perror("Failed to create thread");
@@ -83,4 +83,7 @@ int     main(int argc, char *argv[])
     return (0);
 }
 
+/*
+    We always have to be careful in with order we lock our mutexes, or we can have an deadlock
+*/
 

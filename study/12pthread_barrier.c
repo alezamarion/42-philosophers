@@ -77,6 +77,4 @@ int main(int argc, char *argv[])
     Every thread rolls a dice, saved its value in an array
     The main thread calculates the winner then
     Each thread prints a message with whether or not they lost or won
-
-
 */

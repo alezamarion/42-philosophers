@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos.c                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 23:55:27 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/25 00:04:32 by azamario         ###   ########.fr       */
+/*   Created: 2022/06/25 00:05:06 by azamario          #+#    #+#             */
+/*   Updated: 2022/06/25 00:05:52 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		main(int argc, char **argv)
+int	ft_isdigit(int c)
 {
-	if (!check_errors(argc, argv))
-		return (EXIT_FAILURE);
-	get_arguments(argc, argv, &philo_struct);
-	if (!init_simulation(&philo_struct)
-		return (EXIT_FAILURE);
-	print_end_message(&philo_struct);
-	destroy_mutexes();
-
+	if (c >= '0' && c <= '9')
+		return (1);
 	return (0);
-	
 }

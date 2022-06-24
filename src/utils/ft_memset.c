@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 23:55:27 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/25 00:04:32 by azamario         ###   ########.fr       */
+/*   Created: 2022/06/25 00:05:40 by azamario          #+#    #+#             */
+/*   Updated: 2022/06/25 00:05:49 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		main(int argc, char **argv)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if (!check_errors(argc, argv))
-		return (EXIT_FAILURE);
-	get_arguments(argc, argv, &philo_struct);
-	if (!init_simulation(&philo_struct)
-		return (EXIT_FAILURE);
-	print_end_message(&philo_struct);
-	destroy_mutexes();
+	unsigned char	*ptr;
 
-	return (0);
-	
+	ptr = (unsigned char *)b;
+	while (len > 0)
+	{
+		*ptr = c;
+		ptr++;
+		len--;
+	}
+	return (b);
 }

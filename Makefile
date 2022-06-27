@@ -1,9 +1,11 @@
-NAME		=	thread
+NAME		=	philo
 
-SRC_FILES	=	src/thread.c
+SRC_FILES	=	src/core/philos.c src/core/error_check.c \
+				src/utils/ft_atoi.c src/utils/ft_isdigit.c src/utils/ft_memset.c src/utils/philos_atoi.c
+
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -g -lpthread -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address #-lpthread
 RM			=	rm -rf
 
 OBJ:$(SRC_FILES)

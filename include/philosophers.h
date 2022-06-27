@@ -6,17 +6,19 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/27 15:04:04 by azamario         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:53:52 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS.H
-# define PHILOSOPHERS.H
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
-#include <stlib.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <stdio.h>
+#include <stdbool.h>
 
 //
 #define MIN_ARGS	5
@@ -28,10 +30,13 @@
 #define	PHILO_MAX	"Maximum number of philos: 200"	
 
 //core
-char	error_check(int argc, cher **argv)
-char	error(char *message)
+bool	error_check(int argc, char **argv);
+bool	error(char *message);
 
-
-
+//utils
+int		ft_atoi(const char *str);
+double	philo_atoi(const char *ptr);
+int		ft_isdigit(int c);
+void	*ft_memset(void *b, int c, size_t len);
 
 #endif

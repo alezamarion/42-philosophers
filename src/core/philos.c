@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 23:55:27 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/27 15:39:30 by azamario         ###   ########.fr       */
+/*   Updated: 2022/06/28 02:47:17 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int		main(int argc, char **argv)
 	// print_end_message(&philo_struct);
 	// destroy_mutexes();
 
-	return (0);
-	
+	return (0);	
 }

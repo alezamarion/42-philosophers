@@ -7,13 +7,17 @@ CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address #-lpthread
 RM			=	rm -rf
 
+all: $(NAME)
+
+$(NAME): $(OBJ)
+
 OBJ:$(SRC_FILES)
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $^ -o $@
+	@mkdir -p obj
+	$(CC) $(CFLAGS) $^ -o $(NAME)
 
 clean:
 	make -C fclean
-	$(RM) $(NAME)
+	$(RM) $(OBJ)
 
 fclean: clean
 

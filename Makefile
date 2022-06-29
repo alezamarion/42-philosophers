@@ -1,46 +1,38 @@
+# Source, Executable, Includes, Library Defines
+NAME	=	philos
+INCL	=	include/philosophers.h
+SRC		=	src/core/philos.c src/core/error_check.c \
+			src/utils/ft_atoi.c src/utils/ft_isdigit.c src/utils/ft_memset.c src/utils/philos_atoi.c
+#OBJ		:=	$(SRC:.c=.o)
+#LIBS   =	-lpthread
 
 
-NAME		=	philos
+# Compiler, Linker Defines
+CC		=	gcc
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address #-lpthread
+#LIBPATH =	-L.
+#LDFLAGS =	-o $(OBJ) #$(LIBPATH) $(LIBS)
+#CFDEBUG =	-ansi -pedantic -Wall -g -DDEBUG $(LDFLAGS)
+RM		=	rm -f
 
-SRC_DIR 	=	src
-INCLUDES 	=	include
-HEADERS		:=	$(INCLUDES)/philosophers.h
-INCLUDES	:=	$(addprefix -I, $(INCLUDES))
+# Compile and Assemble C Source Files into Object Files
+%.o:		%.c
+			$(CC) -c $(CFLAGS) $*.c
 
-SRC_CORE	=	core/philos.c core/error_check.c
-SRC_UTILS	=	utils/ft_atoi.c utils/ft_isdigit.c utils/ft_memset.c utils/philos_atoi.c
+# Link all Object Files with external Libraries into Binaries
+$(NAME):	$(OBJ)
+			$(CC) -o $(NAME) $(OBJ) 
 
-SRC			=	$(addprefix $(SRC_DIR)/, $(SRC_CORE), $(SRC_UTILS))
+# Objects depend on these Libraries
+$(OBJ):		$(INCL)
 
-OBJ_DIR		= obj
-OBJ			= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+# Create a gdb/dbx Capable Executable with DEBUG flags turned on
+#debug:
+#		$(CC) $(CFDEBUG) $(SRC)
 
-RM			=	rm -rf
-
-CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address #-lpthread
-
-all: $(NAME)
-
-$(NAME): $(OBJ_DIR) $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) -o $@
-	@echo "\033[32mDone!\033[0m"
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
+# Clean Up Objects, Exectuables, Dumps out of source directory
 clean:
-	make -C $(OBJ_DIR) fclean
-
-fclean: clean
-	$(RM) $(OBJ)
-	$(RM) $(NAME)
-	@echo "\033[32mExecutable and objects cleaned!\033[0m"
-
-re: fclean all
+		$(RM) $(OBJ) $(EXE) core a.out
 
 .PHONY: all clean fclean re bonus
 

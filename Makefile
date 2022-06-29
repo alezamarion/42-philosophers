@@ -1,3 +1,5 @@
+
+
 NAME		=	philos
 
 SRC_DIR 	=	src
@@ -5,10 +7,10 @@ INCLUDES 	=	include
 HEADERS		:=	$(INCLUDES)/philosophers.h
 INCLUDES	:=	$(addprefix -I, $(INCLUDES))
 
-SRC_FILES	=	core/philos.c core/error_check.c \
-				utils/ft_atoi.c utils/ft_isdigit.c utils/ft_memset.c utils/philos_atoi.c
+SRC_CORE	=	core/philos.c core/error_check.c
+SRC_UTILS	=	utils/ft_atoi.c utils/ft_isdigit.c utils/ft_memset.c utils/philos_atoi.c
 
-SRC			=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
+SRC			=	$(addprefix $(SRC_DIR)/, $(SRC_CORE), $(SRC_UTILS))
 
 OBJ_DIR		= obj
 OBJ			= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -43,6 +45,7 @@ re: fclean all
 .PHONY: all clean fclean re bonus
 
 
+#make --debug=b
 
 #$@ relaciona-se com o alvo e $^ relaciona-se com todos pŕe-requisitos.
 

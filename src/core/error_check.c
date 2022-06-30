@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:09:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/28 02:55:27 by azamario         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:53:49 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ bool	error_check(int argc, char **argv)
 	if (!only_unsigned_integers(argc, argv, 0))
 		return (error(NOT_UNINT));
 	if (ft_atoi(argv[1]) > 200)
-		return (error(PHILO_MAX));
+		printf("Here I am :D");
+		//return (error(PHILO_MAX));
 	return (true);
 }

@@ -10,17 +10,18 @@ CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address #-lpthread
 RM		=	rm -rf
 
-all:
+all:	libfilo bin
+
+libfilo:
 	$(CC) -c src/core/error_check.c -I $(INCL) -o $(OBJ)/error_check.o
 	$(CC) -c src/utils/ft_atoi.c -I $(INCL) -o $(OBJ)/ft_atoi.o
 	$(CC) -c src/utils/ft_isdigit.c -I $(INCL) -o $(OBJ)/ft_isdigit.o
 	$(CC) -c src/utils/ft_memset.c -I $(INCL) -o $(OBJ)/ft_memset.o
 	$(CC) -c src/utils/philos_atoi.c -I $(INCL) -o $(OBJ)/philos_atoi.o
 
+bin:
 	$(CC) src/core/philos.c $(OBJ)/*.o -I $(INCL) -o philosophers
 
-#obj/error_check.o obj/ft_atoi.o obj/ft_isdigit.o obj/ft_memset.o obj/philos_atoi.o obj/philos.o -o philosophers
-#	$(CC) $(OBJ)/*.o -I $(INCL) -o philosophers
 
 # Compile and Assemble C Source Files into Object Files
 
@@ -32,6 +33,8 @@ all:
 # Clean Up Objects, Exectuables, Dumps out of source directory
 clean: 
 	$(RM) $(OBJ)/*.o philosophers
+
+re: clean all
 
 .PHONY: all clean fclean re bonus
 

@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:09:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/30 20:53:49 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/01 02:19:38 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool	only_unsigned_integers(int argc, char **argv, int i)
 
 bool	error(char *message)
 {
-	printf("%c", *message);
+	printf("%s\n", message);
 	return (false);
 }
 
@@ -51,8 +51,15 @@ bool	error_check(int argc, char **argv)
 		return (error(USAGE));
 	if (!only_unsigned_integers(argc, argv, 0))
 		return (error(NOT_UNINT));
-	if (ft_atoi(argv[1]) > 200)
-		printf("Here I am :D");
-		//return (error(PHILO_MAX));
 	return (true);
 }
+
+/*
+
+Erros:
+	- poucos ou muitos argumentos OK
+	- não pode número negativo
+	- apenas números (não pode letras)
+	- número entre 0 e INTMAX	
+	
+*/

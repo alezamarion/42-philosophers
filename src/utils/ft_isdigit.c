@@ -6,11 +6,11 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:05:06 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/27 15:55:21 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/01 03:06:53 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosophers.h"
+#include "philosophers.h"
 
 int	ft_isdigit(int c)
 {

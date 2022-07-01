@@ -6,11 +6,11 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 23:55:27 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/01 02:03:04 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/01 03:04:39 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosophers.h"
+#include "philosophers.h"
 
 int		main(int argc, char **argv)
 {
@@ -24,3 +24,19 @@ int		main(int argc, char **argv)
 
 	return (0);	
 }
+
+/*
+
+1 - Erros:
+	- poucos ou muitos argumentos OK
+	- não pode número negativo
+	- apenas números (não pode letras)
+	- número entre 0 e INTMAX	
+
+2 - Pegar argumentos da linha de comando e colocar na struct
+
+3 - Fazer a simulação com base na linha de comando: criar threads (filósofos) e mutex (garfos)
+
+4 - Encerrar o programa e destruir mutes
+
+*/

@@ -1,6 +1,6 @@
 # Source, Executable, Includes, Library Defines
 NAME	=	philosopher
-INCL	=	include/philosophers.h
+INCL	=	./include
 SRC		=	src/core/philos.c src/core/error_check.c \
 			src/utils/ft_atoi.c src/utils/ft_isdigit.c src/utils/ft_memset.c src/utils/philos_atoi.c
 OBJ		=	./obj
@@ -27,7 +27,6 @@ bin:
 
 
 # Link all Object Files with external Libraries into Binaries
-
 
 
 # Clean Up Objects, Exectuables, Dumps out of source directory

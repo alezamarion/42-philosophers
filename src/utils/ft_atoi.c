@@ -6,11 +6,11 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:23:31 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/27 15:40:10 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/01 03:06:46 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosophers.h"
+#include "philosophers.h"
 
 int	ft_atoi(const char *str)
 {

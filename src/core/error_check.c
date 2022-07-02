@@ -6,13 +6,13 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:09:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/02 04:46:21 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:50:14 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static bool	is_out_of_range(int number)
+static bool	is_out_of_range(double number) //troquei int por double
 {
 	if (number > INT_MAX || number == 0)
 		return (true);
@@ -34,8 +34,8 @@ static bool	only_unsigned_integers(int argc, char **argv, int i)
 	{
 		if (!only_digits(argv, i, -1))
 			return false;
-		if (is_out_of_range(ft_atoi(argv[i])))
-			return false;
+		if (is_out_of_range(philos_atoi(argv[i])))
+		 	return false;
 	}
 	return (true);
 }
@@ -59,6 +59,6 @@ bool	error_check(int argc, char **argv)
 1 - Erros:
 	OK	- poucos ou muitos argumentos
 	OK	- não pode número negativo
-	- apenas números (não pode letras)
-	- número entre 0 e INTMAX	
+	OK apenas números (não pode letras)
+	OK número > 0 e < INTMAX	
 */

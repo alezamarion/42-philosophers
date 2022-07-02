@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/06/28 02:58:04 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/02 04:24:49 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 //error messages
 #define USAGE		"Usage: ./philo n_philo ms_to_die ms_to_eat ms_to_sleep"
 #define NOT_UNINT	"Arguments must be greater than 0"
-#define	PHILO_MAX	"Maximum number of philos: 200"	
+#define NOT_INTEGER "Arguments must be integers"
 
 //philos.c
 

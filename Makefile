@@ -18,6 +18,7 @@ libfilo:
 	$(CC) -c src/utils/ft_isdigit.c -I $(INCL) -o $(OBJ)/ft_isdigit.o
 	$(CC) -c src/utils/ft_memset.c -I $(INCL) -o $(OBJ)/ft_memset.o
 	$(CC) -c src/utils/philos_atoi.c -I $(INCL) -o $(OBJ)/philos_atoi.o
+	$(CC) -c src/utils/ft_isascii.c -I $(INCL) -o $(OBJ)/ft_isascii.o
 
 bin:
 	$(CC) src/core/philos.c $(OBJ)/*.o -I $(INCL) -o philosophers

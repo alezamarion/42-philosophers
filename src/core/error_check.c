@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:09:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/01 03:04:48 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/02 04:46:21 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ static bool	is_out_of_range(int number)
 static bool	only_digits(char **argv, int i, int j)
 {
 	while (argv[i][++j])
-		if (ft_isdigit(argv[i][j]))
+		if (!ft_isdigit(argv[i][j]))
 			return (false);
-	return (true);	
+	return (true);
+	
 }
 
 static bool	only_unsigned_integers(int argc, char **argv, int i)
@@ -53,3 +54,11 @@ bool	error_check(int argc, char **argv)
 		return (error(NOT_UNINT));
 	return (true);
 }
+
+/*
+1 - Erros:
+	OK	- poucos ou muitos argumentos
+	OK	- não pode número negativo
+	- apenas números (não pode letras)
+	- número entre 0 e INTMAX	
+*/

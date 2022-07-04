@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/04 20:11:56 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:12:03 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,25 @@
 #define MIN_ARGS	5
 #define MAX_ARGS	6
 
+typedef struct	s_dinner
+{
+	long	number_of_philos;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	long	must_eat;
+	
+}				t_dinner;
+
+
 //error messages
 #define USAGE		"Usage: ./philo n_philo ms_to_die ms_to_eat ms_to_sleep"
 #define NOT_UNINT	"Arguments must be integers greater than 0"
 
 //philos.c
+
+//get_arguments.c
+void	get_arguments(int argc, char **argv, t_dinner *dinner);
 
 
 //error_check

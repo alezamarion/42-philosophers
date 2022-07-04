@@ -14,6 +14,7 @@ all:	libfilo bin
 
 libfilo:
 	$(CC) -c src/core/error_check.c -I $(INCL) -o $(OBJ)/error_check.o
+	$(CC) -c src/core/get_arguments.c -I $(INCL) -o $(OBJ)/get_arguments.o
 	$(CC) -c src/utils/ft_isdigit.c -I $(INCL) -o $(OBJ)/ft_isdigit.o
 	$(CC) -c src/utils/ft_memset.c -I $(INCL) -o $(OBJ)/ft_memset.o
 	$(CC) -c src/utils/philos_atoi.c -I $(INCL) -o $(OBJ)/philos_atoi.o

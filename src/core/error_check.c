@@ -6,13 +6,13 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:09:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/02 20:54:06 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:08:21 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static bool	is_out_of_range(double number) //troquei int por double
+static bool	is_out_of_range(double number)
 {
 	if (number > INT_MAX || number == 0)
 		return (true);

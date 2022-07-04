@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/02 20:50:36 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:11:56 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 //error messages
 #define USAGE		"Usage: ./philo n_philo ms_to_die ms_to_eat ms_to_sleep"
 #define NOT_UNINT	"Arguments must be integers greater than 0"
-#define NOT_INTEGER "Arguments must be integers"
 
 //philos.c
 

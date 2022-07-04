@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/04 21:12:03 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:37:14 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct	s_dinner
 	long	time_to_eat;
 	long	time_to_sleep;
 	long	must_eat;
-	
 }				t_dinner;
 
 

@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/05 21:13:14 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:25:27 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,19 @@ typedef struct	s_time
 	long	must_eat;
 }				t_time;
 
+typedef struct s_mutex
+{
+	pthread_mutex_t text;
+	pthread_mutex_t death;
+	pthread_mutex_t fork[???];
+	
+}				t_mutex;
+
 typedef struct s_dinner
 {
 	long	number_of_philos;
 	t_time	time;
+	t_mutex	mutex;
 	
 	
 }				t_dinner;

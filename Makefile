@@ -3,14 +3,13 @@ NAME	=	philosopher
 INCL	=	-I include
 
 SRC_DIR =	./src/core
-SRC		=	philos.c error_check.c \
+SRC		=	philos.c error_check.c get_arguments.c
 
 UTIL_DIR =	./src/utils
-UTILS	=	ft_atoi.c ft_isdigit.c ft_memset.c philos_atoi.c
+UTILS	=	ft_isdigit.c ft_memset.c philos_atoi.c
 
 SIM_DIR =	./src/simulation
 SIMULATION	=	init_simulation.c
-
 
 OBJ		=	./obj
 

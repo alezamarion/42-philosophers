@@ -8,6 +8,10 @@ SRC		=	philos.c error_check.c \
 UTIL_DIR =	./src/utils
 UTILS	=	ft_atoi.c ft_isdigit.c ft_memset.c philos_atoi.c
 
+SIM_DIR =	./src/simulation
+SIMULATION	=	init_simulation.c
+
+
 OBJ		=	./obj
 
 # Compiler, Linker Defines
@@ -23,6 +27,7 @@ libfilo:
 	$(CC) -c $(UTIL_DIR)/ft_isdigit.c $(INCL) -o $(OBJ)/ft_isdigit.o
 	$(CC) -c $(UTIL_DIR)/ft_memset.c $(INCL) -o $(OBJ)/ft_memset.o
 	$(CC) -c $(UTIL_DIR)/philos_atoi.c $(INCL) -o $(OBJ)/philos_atoi.o
+	$(CC) -c $(SIM_DIR)/init_simulation.c $(INCL) -o $(OBJ)/init_simulation.o
 
 bin:
 	$(CC) $(SRC_DIR)/philos.c $(OBJ)/*.o $(INCL) -o philosophers

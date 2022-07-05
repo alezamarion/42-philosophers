@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 23:55:27 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/05 19:50:42 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:52:34 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int		main(int argc, char **argv)
 	if (!error_check(argc, argv))
 		return (EXIT_FAILURE);
 	get_arguments(argc, argv, &dinner);
-//	if (!init_simulation(&dinner)
-		// return (EXIT_FAILURE);
+	if (!init_simulation(&dinner))
+		return (EXIT_FAILURE);
 	// print_end_message(&philo_struct);
 	// destroy_mutexes();
 

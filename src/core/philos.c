@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 23:55:27 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/04 21:10:36 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:50:42 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int argc, char **argv)
 	if (!error_check(argc, argv))
 		return (EXIT_FAILURE);
 	get_arguments(argc, argv, &dinner);
-	// if (!init_simulation(&philo_struct)
+//	if (!init_simulation(&dinner)
 		// return (EXIT_FAILURE);
 	// print_end_message(&philo_struct);
 	// destroy_mutexes();
@@ -29,13 +29,13 @@ int		main(int argc, char **argv)
 
 /*
 
-1 - Erros:
+OK	1 - Erros:
 	- poucos ou muitos argumentos OK
 	- não pode número negativo
 	- apenas números (não pode letras)
 	- número entre 0 e INTMAX	
 
-2 - Pegar argumentos da linha de comando e colocar na struct
+Ok	2 - Pegar argumentos da linha de comando e colocar na struct
 
 3 - Fazer a simulação com base na linha de comando: criar threads (filósofos) e mutex (garfos)
 

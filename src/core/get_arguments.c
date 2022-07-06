@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:07:08 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/05 20:16:05 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/06 03:15:24 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	assign_value(int id, int value, t_dinner *dinner)
 
 	variable = define_variable(id, dinner);
 	*variable =  value;
-	
-	printf("data: %lu\n", *variable);
 }
 
 void	get_arguments(int argc, char **argv, t_dinner *dinner)

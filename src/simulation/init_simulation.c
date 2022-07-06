@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:40:56 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/05 23:25:11 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/06 04:36:36 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void	define_forks(t_philo *philo, int i, long last_philo)
 		philo[i].hand[RIGHT] = 1;	//a mão direita seria 201 (no caso de 200 philos)	
 //		printf("philo %i: hand_right: %i\n", i, philo[i].hand[RIGHT]);
 	}
-	else
+//	else
 //		printf("philo %i: hand_right: %i\n\n", i, philo[i].hand[RIGHT]);
 
 }
 
 static void	init_philos(t_philo *philo, t_dinner *dinner, long number_of_philos, int i)
 {	
-	while (++i <= number_of_philos)
+	while (++i < number_of_philos)
 	{
 		ft_memset(&philo[i], 0, sizeof(t_philo));
 		philo[i].index = i;
@@ -40,10 +40,17 @@ static void	init_philos(t_philo *philo, t_dinner *dinner, long number_of_philos,
 
 static void	init_mutexes(t_mutex *mutex, long number_of_philos, int i)
 {
-	while (i++ <= number_of_philos)
-		pthread_mutex_init(&mutex->fork[i], NULL);
+	mutex->fork = (pthread_mutex_t *)malloc(number_of_philos * sizeof(pthread_mutex_t));
+	
+	while (i++ < number_of_philos){
+		pthread_mutex_init(mutex->fork, NULL);    /* aqui mora o perigo */
+		mutex->fork++;
+	}
+	//mutex->fork--;
 	pthread_mutex_init(&mutex->text, NULL);
-	pthread_mutex_init(&mutex->death, NULL);	
+	pthread_mutex_init(&mutex->death, NULL);
+
+	free(mutex->fork);	
 }
 
 bool	init_simulation(t_dinner *dinner)

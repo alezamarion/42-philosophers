@@ -21,15 +21,15 @@ RM		=	rm -rf
 all:	libfilo bin
 
 libfilo:
-	$(CC) -c $(SRC_DIR)/error_check.c $(INCL) -o $(OBJ)/error_check.o
-	$(CC) -c $(SRC_DIR)/get_arguments.c $(INCL) -o $(OBJ)/get_arguments.o
-	$(CC) -c $(UTIL_DIR)/ft_isdigit.c $(INCL) -o $(OBJ)/ft_isdigit.o
-	$(CC) -c $(UTIL_DIR)/ft_memset.c $(INCL) -o $(OBJ)/ft_memset.o
-	$(CC) -c $(UTIL_DIR)/philos_atoi.c $(INCL) -o $(OBJ)/philos_atoi.o
-	$(CC) -c $(SIM_DIR)/init_simulation.c $(INCL) -o $(OBJ)/init_simulation.o
+	$(CC) -c $(CFLAGS) $(SRC_DIR)/error_check.c $(INCL) -o $(OBJ)/error_check.o
+	$(CC) -c $(CFLAGS) $(SRC_DIR)/get_arguments.c $(INCL) -o $(OBJ)/get_arguments.o
+	$(CC) -c $(CFLAGS) $(UTIL_DIR)/ft_isdigit.c $(INCL) -o $(OBJ)/ft_isdigit.o
+	$(CC) -c $(CFLAGS) $(UTIL_DIR)/ft_memset.c $(INCL) -o $(OBJ)/ft_memset.o
+	$(CC) -c $(CFLAGS) $(UTIL_DIR)/philos_atoi.c $(INCL) -o $(OBJ)/philos_atoi.o
+	$(CC) -c $(CFLAGS) $(SIM_DIR)/init_simulation.c $(INCL) -o $(OBJ)/init_simulation.o
 
 bin:
-	$(CC) $(SRC_DIR)/philos.c $(OBJ)/*.o $(INCL) -o philosophers
+	$(CC) $(CFLAGS) $(SRC_DIR)/philos.c $(OBJ)/*.o $(INCL) -o philosophers
 
 
 # Compile and Assemble C Source Files into Object Files

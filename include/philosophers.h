@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/05 23:25:27 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/06 03:54:50 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_mutex
 {
 	pthread_mutex_t text;
 	pthread_mutex_t death;
-	pthread_mutex_t fork[???];
+	pthread_mutex_t *fork;
 	
 }				t_mutex;
 

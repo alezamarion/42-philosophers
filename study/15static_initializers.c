@@ -21,7 +21,7 @@ int     main(int argc, char *argv[])
     //if you use this macro, you do not need to initializa your mutex
     //but if you are initializing an array of threads, you will have to iterate it assigning this macro,
     //specially if you dinamically allocates the threads
-    pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+    //pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
     //pthread_mutex_init(&mutex, NULL);
 
     for (i = 0; i < THREAD_NUM; i++)

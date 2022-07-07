@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:09:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/05 02:36:40 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/07 03:20:24 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ static bool	is_out_of_range(double number)
 	if (number > INT_MAX || number == 0)
 		return (true);
 	return (false);	
+}
+
+static int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
 
 static bool	only_digits(char **argv, int i, int j)

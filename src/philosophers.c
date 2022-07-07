@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 00:05:06 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/02 04:17:10 by azamario         ###   ########.fr       */
+/*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
+/*   Updated: 2022/07/07 03:16:41 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_isdigit(int c)
+
+
+
+
+
+
+int		main(int argc, char **argv)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	t_data	data;
+	int		i;
+
+	i = 0;
+	pthread_mutex_init(&data.print, NULL);
+	if (!error_check(argc, argv))
+		return (EXIT_FAILURE);
+
+
+
+
+
+	
 }

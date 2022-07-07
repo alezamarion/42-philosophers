@@ -6,17 +6,11 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/07 03:16:41 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/07 03:47:31 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-
-
-
-
-
 
 int		main(int argc, char **argv)
 {
@@ -28,9 +22,6 @@ int		main(int argc, char **argv)
 	if (!error_check(argc, argv))
 		return (EXIT_FAILURE);
 
-
-
-
-
+	return (0);
 	
 }

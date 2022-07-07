@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/07 03:11:34 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/07 03:35:55 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 #define MIN_ARGS	5
 #define MAX_ARGS	6
 
+//error messages
+#define USAGE		"Usage: ./philo n_philo ms_to_die ms_to_eat ms_to_sleep [number_times_each_philo_must_eat]"
+#define NOT_UNINT	"Arguments must be integers greater than 0"
+
 typedef struct			s_data
 {
 	int				number_of_philos;
@@ -40,6 +44,8 @@ typedef struct			s_data
 	pthread_mutex_t	print;
 }						t_data;
 
+//src
+bool	error_check(int argc, char **argv);
 
 
 

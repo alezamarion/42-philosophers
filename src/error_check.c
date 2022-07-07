@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:09:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/07 03:20:24 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/07 03:34:38 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,20 @@ static bool	only_digits(char **argv, int i, int j)
 			return (false);
 	return (true);
 	
+}
+
+static double	philos_atoi(const char *ptr)
+{
+	double	number;
+
+	number = 0;
+	while (ft_isdigit(*ptr))
+	{
+		number *= 10;
+		number += (*ptr - '0');
+		ptr++;
+	}
+	return (number);
 }
 
 static bool	only_unsigned_integers(int argc, char **argv, int i)

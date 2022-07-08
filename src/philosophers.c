@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/08 03:44:42 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/08 03:51:53 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,13 @@ void	*routine(void *param) 	//5
 	while (philo->struct_data->checker != 1)
 	{
 		eat(philo);
+		print_status(get_time(), philo, "is sleeping");
+		usleep(philo->struct_data->time_to_sleep * 1000);
+		print_status(get_time(), philo, "is thinking");
+		philo->n_meals++;
 	}
 	return (NULL);
 }
-
 
 int		create_philo(t_data *data)
 {

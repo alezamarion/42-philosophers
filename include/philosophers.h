@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/08 03:39:55 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:41:16 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void		ft_bzero(void *s, size_t n);
 //utils_dinner.c
 void	*one_philo(t_philo *philo);
 void	eat(t_philo *philo);
+void	*died(void *param);
 
 //print_status.c
 void	print_status(long int time_now, t_philo *philo, char *status);

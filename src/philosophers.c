@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/08 03:51:53 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/08 18:01:20 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int		main(int argc, char **argv)
 	data.start_meal = get_time();
 	start_struct(&data, argc, argv);
 	create_philo(&data);
+	pthread_create(&data.monitor, NULL, &died, &data);
 
 	return (0);
 	

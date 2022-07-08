@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/08 02:40:58 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/08 03:44:42 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ void	*routine(void *param) 	//5
 	philo = param;
 	if (philo->struct_data->number_of_philos == 1)
 		return (one_philo(philo));
+	if (philo->n_philo % 2 == 0)
+		usleep(1600);
+	while (philo->struct_data->checker != 1)
+	{
+		eat(philo);
+	}
+	return (NULL);
 }
 
 

@@ -21,7 +21,7 @@ libfilo:
 	$(CC) -c $(CFLAGS) $(SRC_DIR)/error_check.c $(INCL) -o $(OBJ)/error_check.o
 	$(CC) -c $(CFLAGS) $(UTIL_DIR)/print_status.c $(INCL) -o $(OBJ)/print_status.o
 	$(CC) -c $(CFLAGS) $(UTIL_DIR)/utils_dinner.c $(INCL) -o $(OBJ)/utils_dinner.o
-#	$(CC) -c $(CFLAGS) $(UTIL_DIR)/utils.c $(INCL) -o $(OBJ)/utils.o
+	$(CC) -c $(CFLAGS) $(UTIL_DIR)/utils.c $(INCL) -o $(OBJ)/utils.o
 
 bin:
 	$(CC) $(CFLAGS) $(SRC_DIR)/philosophers.c $(OBJ)/*.o $(INCL) -o philosophers

@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/07 04:52:45 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/08 02:40:58 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ void	start_struct(t_data *data, int argc, char **argv)
 	ft_bzero(data->philo, sizeof(t_philo));
 	return (philo_info(data));
 }
+
+void	*routine(void *param) 	//5
+{
+	t_philo	*philo;
+
+	philo = param;
+	if (philo->struct_data->number_of_philos == 1)
+		return (one_philo(philo));
+}
+
 
 int		create_philo(t_data *data)
 {

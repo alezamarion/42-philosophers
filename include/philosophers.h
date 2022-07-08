@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/07 04:53:25 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/08 02:52:09 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ int			ft_atoi(const char *ptr);
 long int	get_time(void);
 void		ft_bzero(void *s, size_t n);
 
+//utils_dinner.c
+void	*one_philo(t_philo *philo);
 
+//print_status.c
+void	print_status(long int time_now, t_philo *philo, char *status);
 
 
 

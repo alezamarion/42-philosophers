@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/08 17:41:16 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/09 02:58:08 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct			s_philo
 {
 	int				left_fork;
 	int				right_fork;
-	int				n_philo;
-	int				n_meals;
+	int				philo_ID;
+	int				meals_eaten;
 	long int		last_meal;
 	pthread_mutex_t	mutex;
 	pthread_t		thread;

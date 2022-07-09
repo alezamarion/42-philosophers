@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/08 18:02:54 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/09 02:58:38 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*died(void *param)
 			data->checker = 1;
 			return (NULL);
 		}
-		if (data->philo[i].n_meals == data->must_eat && data->must_eat > 0)
+		if (data->philo[i].meals_eaten == data->must_eat && data->must_eat > 0)
 			data->ate_meal++;
 		if (data->ate_meal == data->number_of_philos)
 		{

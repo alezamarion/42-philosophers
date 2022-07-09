@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/09 03:23:06 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/09 03:40:44 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 #define MAX_ARGS	6
 
 //error messages
-#define USAGE		"Usage: ./philo n_philo ms_to_die ms_to_eat ms_to_sleep [number_times_each_philo_have_to_dinner]"
-#define NOT_UNINT	"Arguments must be integers greater than 0"
+#define USAGE		"Usage: ./philo n_philo ms_to_die ms_to_eat ms_to_sleep [number_times_each_philo_have_to_dinner]\n"
+#define NOT_UNINT	"Arguments must be integers greater than 0\n"
+#define PTHREAD_FAILURE "Cold not create thread\n" 
 
 typedef struct s_data	t_data;		// 2
 
@@ -63,6 +64,8 @@ struct			s_data
 
 //error_check.c
 bool		error_check(int argc, char **argv);
+bool		error(char *message);
+
 
 //utils.c
 int			ft_atoi(const char *ptr);

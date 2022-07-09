@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/09 03:23:06 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/09 03:45:53 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	philo_info(t_data *data)
 		data->philo[i].had_dinner = 0;				
 		if (i + 1 == data->number_of_philos)
 			data->philo[i].right_fork = 0;
-		pthread_mutex_init(&data->forks[i], NULL);
+		pthread_mutex_init(&data->forks[i], NULL); //cria o mutex de cada garfo
 		i++;
 	}
 }
@@ -76,7 +76,10 @@ int		create_philo(t_data *data)
 	
 	i = -1;
 	while (++i < data->number_of_philos)
-		pthread_create(&data->philo[i].thread, NULL, &routine, &data->philo[i]); //checar erros para ver se as threads foram criadas
+	{
+		if (pthread_create(&data->philo[i].thread, NULL, &routine, &data->philo[i]) != 0) //checar erros para ver se as threads foram criadas
+			return (error(PTHREAD_FAILURE));
+	}	
 	return (1);
 }
 
@@ -90,8 +93,8 @@ int		main(int argc, char **argv)
 	if (!error_check(argc, argv))
 		return (EXIT_FAILURE);
 	data.start_dinner = get_time();
-	start_struct(&data, argc, argv);
-	create_philo(&data);
+	start_struct(&data, argc, argv);					//
+	create_philo(&data);								//realiza while para criar a thread de cada philo
 	pthread_create(&data.monitor, NULL, &died, &data);
 	while (++i < data.number_of_philos)
 		pthread_join(data.philo[i].thread, NULL);

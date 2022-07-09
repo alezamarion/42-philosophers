@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/09 03:45:53 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/09 04:43:50 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,22 @@ void	start_struct(t_data *data, int argc, char **argv)				// colocar os argument
 	return (philo_info(data));
 }
 
-void	*routine(void *param) 	//5
+void	*routine(void *param) 	//passa a struct para a variável philo
 {
 	t_philo	*philo;
 
 	philo = param;
 	if (philo->struct_data->number_of_philos == 1)
 		return (one_philo(philo));
-	if (philo->philo_ID % 2 == 0)
+	if (philo->philo_ID % 2 == 0)		//se philo_ID é par, espera alguns ms para que threads impares peguem o garfo dela e do philo par
 		usleep(1600);
-	while (philo->struct_data->checker != 1)
+	while (philo->struct_data->checker != 1) //checker 1 == alguém morreu -> vai comer, dormir e pensar
 	{
 		eat(philo);
 		print_status(get_time(), philo, "is sleeping");
-		usleep(philo->struct_data->time_to_sleep * 1000);
+		usleep(philo->struct_data->time_to_sleep * 1000); //dorme pelo tempo que pasosu na linha de comando
 		print_status(get_time(), philo, "is thinking");
-		philo->had_dinner++;
+		philo->had_dinner++; 							//quantas vezes comeu
 	}
 	return (NULL);
 }
@@ -77,13 +77,13 @@ int		create_philo(t_data *data)
 	i = -1;
 	while (++i < data->number_of_philos)
 	{
-		if (pthread_create(&data->philo[i].thread, NULL, &routine, &data->philo[i]) != 0) //checar erros para ver se as threads foram criadas
+		if (pthread_create(&data->philo[i].thread, NULL, &routine, &data->philo[i]) != 0)
 			return (error(PTHREAD_FAILURE));
 	}	
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int		main(int argc, char **argv) //refatorar?
 {
 	t_data	data;
 	int		i;
@@ -95,10 +95,11 @@ int		main(int argc, char **argv)
 	data.start_dinner = get_time();
 	start_struct(&data, argc, argv);					//
 	create_philo(&data);								//realiza while para criar a thread de cada philo
-	pthread_create(&data.monitor, NULL, &died, &data);
+	if (pthread_create(&data.monitor, NULL, &died, &data) != 0)  //cria a thread do monitor
+		return (error(PTHREAD_FAILURE));
 	while (++i < data.number_of_philos)
-		pthread_join(data.philo[i].thread, NULL);
-	pthread_join(data.monitor, NULL);
+		pthread_join(data.philo[i].thread, NULL);		//realiza um while para dar join em cada philo - aí dispara as threads
+	pthread_join(data.monitor, NULL);					//as threads começam a funcionar aqui, com o join - as duas rotinas acontecem: jantar e a verificação se alguém morreu
 	free(data.philo);
 	free(data.forks);
 	return (0);	

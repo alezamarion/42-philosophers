@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/09 02:59:15 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/09 03:23:06 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	philo_info(t_data *data)
 		data->philo[i].left_fork = i;			//														right 1		right 2		right 3
 		data->philo[i].right_fork = i + 1;
 		data->philo[i].struct_data = data;		// valores da struct data entram na struct philo->data ||
-		data->philo[i].last_meal = get_time();
-		data->philo[i].meals_eaten = 0;				// meals_eaten
+		data->philo[i].last_dinner = get_time();
+		data->philo[i].had_dinner = 0;				
 		if (i + 1 == data->number_of_philos)
 			data->philo[i].right_fork = 0;
 		pthread_mutex_init(&data->forks[i], NULL);
@@ -39,13 +39,13 @@ void	start_struct(t_data *data, int argc, char **argv)				// colocar os argument
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc > 5)
-		data->must_eat = ft_atoi(argv[5]);
+		data->have_to_dinner = ft_atoi(argv[5]);
 	else
-		data->must_eat = 0;
+		data->have_to_dinner = 0;
 	data->forks = NULL;
 	data->philo = malloc(data->number_of_philos * sizeof(t_philo));			//malloca espaço na struct t_philo, onde vai ser criado todos os philos
 	data->forks = malloc(data->number_of_philos * sizeof(pthread_mutex_t)); //malloca espaço para a struct pthread_mutex_t
-	data->ate_meal = 0;
+	data->ate_dinner = 0;
 	ft_bzero(data->philo, sizeof(t_philo));									//zera a struct que vai acomodar os philos
 	return (philo_info(data));
 }
@@ -65,7 +65,7 @@ void	*routine(void *param) 	//5
 		print_status(get_time(), philo, "is sleeping");
 		usleep(philo->struct_data->time_to_sleep * 1000);
 		print_status(get_time(), philo, "is thinking");
-		philo->meals_eaten++;
+		philo->had_dinner++;
 	}
 	return (NULL);
 }
@@ -89,7 +89,7 @@ int		main(int argc, char **argv)
 	pthread_mutex_init(&data.print, NULL);				//data.print = tipo pthread_mutex_t | 
 	if (!error_check(argc, argv))
 		return (EXIT_FAILURE);
-	data.start_meal = get_time();
+	data.start_dinner = get_time();
 	start_struct(&data, argc, argv);
 	create_philo(&data);
 	pthread_create(&data.monitor, NULL, &died, &data);

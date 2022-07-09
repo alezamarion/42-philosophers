@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/09 02:58:38 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/09 03:22:43 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	*died(void *param)
 	i = -1;
 	while (++i < data->number_of_philos)
 	{
-		if (get_time() - data->philo[i].last_meal > data->time_to_die)
+		if (get_time() - data->philo[i].last_dinner > data->time_to_die)
 		{
 			print_status(get_time(), data->philo, "DIED");
 			data->checker = 1;
 			return (NULL);
 		}
-		if (data->philo[i].meals_eaten == data->must_eat && data->must_eat > 0)
-			data->ate_meal++;
-		if (data->ate_meal == data->number_of_philos)
+		if (data->philo[i].had_dinner == data->have_to_dinner && data->have_to_dinner > 0)
+			data->ate_dinner++;
+		if (data->ate_dinner == data->number_of_philos)
 		{
 			data->checker = 1;
 			return (NULL);
@@ -46,7 +46,7 @@ void	*died(void *param)
 void	*one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
-	philo->last_meal = get_time();
+	philo->last_dinner = get_time();
 	print_status(get_time(), philo, "has taken a fork");
 	pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
 	print_status(get_time(), philo, "DIED");
@@ -58,7 +58,7 @@ void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
 	pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
-	philo->last_meal = get_time();
+	philo->last_dinner = get_time();
 	print_status(get_time(), philo, "has taken a fork");
 	print_status(get_time(), philo, "has taken a fork");
 	print_status(get_time(), philo, "is eating");

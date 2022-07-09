@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/09 02:58:08 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/09 03:23:06 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #define MAX_ARGS	6
 
 //error messages
-#define USAGE		"Usage: ./philo n_philo ms_to_die ms_to_eat ms_to_sleep [number_times_each_philo_must_eat]"
+#define USAGE		"Usage: ./philo n_philo ms_to_die ms_to_eat ms_to_sleep [number_times_each_philo_have_to_dinner]"
 #define NOT_UNINT	"Arguments must be integers greater than 0"
 
 typedef struct s_data	t_data;		// 2
@@ -35,8 +35,8 @@ typedef struct			s_philo
 	int				left_fork;
 	int				right_fork;
 	int				philo_ID;
-	int				meals_eaten;
-	long int		last_meal;
+	int				had_dinner;
+	long int		last_dinner;
 	pthread_mutex_t	mutex;
 	pthread_t		thread;
 	t_data			*struct_data;
@@ -48,10 +48,10 @@ struct			s_data
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				must_eat;
+	int				have_to_dinner;
 	int				checker;
-	int				ate_meal;
-	long int		start_meal;
+	int				ate_dinner;
+	long int		start_dinner;
 	t_philo			*philo;
 	pthread_t		monitor;
 	pthread_mutex_t	*forks;

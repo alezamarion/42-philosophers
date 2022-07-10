@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:22:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/07 04:39:23 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/10 15:37:35 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_atoi(const char *ptr)
 
 int	ft_isdigit(int c)
 {
-//	printf("c = %d\n", c);
 	if (c >= '0' && c <= 2147483647)
 	{
 		return (0);
@@ -61,7 +60,10 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-long int	get_time(void)		// 1
+/*
+	estudar essa função
+*/
+long int	get_time(void)
 {
 	struct timeval	tv;
 	long int		milliseconds;

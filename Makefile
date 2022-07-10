@@ -1,5 +1,5 @@
 # Source, Executable, Includes, Library Defines
-NAME	=	philosophers
+NAME	=	philo
 INCL	=	-I include
 
 SRC_DIR =	./src
@@ -24,7 +24,7 @@ libfilo:
 	$(CC) -c $(CFLAGS) $(UTIL_DIR)/utils.c $(INCL) -o $(OBJ)/utils.o
 
 bin:
-	$(CC) $(CFLAGS) $(SRC_DIR)/philosophers.c $(OBJ)/*.o $(INCL) -o philosophers
+	$(CC) $(CFLAGS) $(SRC_DIR)/philosophers.c $(OBJ)/*.o $(INCL) -o philo
 
 # Compile and Assemble C Source Files into Object Files
 
@@ -34,7 +34,7 @@ bin:
 
 # Clean Up Objects, Exectuables, Dumps out of source directory
 clean: 
-	$(RM) $(OBJ)/*.o philosophers
+	$(RM) $(OBJ)/*.o philo
 
 re: clean all
 

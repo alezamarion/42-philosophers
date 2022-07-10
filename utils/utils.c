@@ -6,11 +6,17 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:22:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/10 15:37:35 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/10 23:51:53 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+bool	error(char *message)
+{
+	printf("%s\n", message);
+	return (false);
+}
 
 int	ft_atoi(const char *ptr)
 {
@@ -37,15 +43,6 @@ int	ft_atoi(const char *ptr)
 	return (res * sign);
 }
 
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= 2147483647)
-	{
-		return (0);
-	}
-	return (1);
-}
-
 void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*s_s;
@@ -61,14 +58,26 @@ void	ft_bzero(void *s, size_t n)
 }
 
 /*
-	estudar essa função
-*/
-long int	get_time(void)
+int	ft_isdigit(int c)
 {
-	struct timeval	tv;
-	long int		milliseconds;
+	if (c >= '0' && c <= 2147483647)
+	{
+		return (0);
+	}
+	return (1);
+}
+*/
 
-	gettimeofday(&tv, NULL);
-	milliseconds = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (milliseconds);
+double	philos_atoi(const char *ptr)
+{
+	double	number;
+
+	number = 0;
+	while (ft_isdigit(*ptr))
+	{
+		number *= 10;
+		number += (*ptr - '0');
+		ptr++;
+	}
+	return (number);
 }

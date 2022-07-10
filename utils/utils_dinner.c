@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/10 15:50:38 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/10 23:42:32 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	*died(void *param)
 			data->checker = 1;
 			return (NULL);
 		}
-		if (data->philo[i].had_dinner == data->have_to_dinner
-			&& data->have_to_dinner > 0)
+		if (data->philo[i].had_dinner == data->to_dinner && data->to_dinner > 0)
 			data->ate_dinner++;
 		if (data->ate_dinner == data->number_of_philos)
 		{
@@ -79,4 +78,17 @@ void	eat(t_philo *philo)
 	usleep(philo->struct_data->time_to_eat * 1000);
 	pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);
 	pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
+}
+
+/*
+	estudar essa função
+*/
+long int	get_time(void)
+{
+	struct timeval	tv;
+	long int		milliseconds;
+
+	gettimeofday(&tv, NULL);
+	milliseconds = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (milliseconds);
 }

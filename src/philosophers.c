@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/10 15:48:22 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/10 23:34:21 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 */
 void	philo_info(t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < data->number_of_philos)
 	{
@@ -59,9 +59,9 @@ void	start_struct(t_data *data, int argc, char **argv)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc > 5)
-		data->have_to_dinner = ft_atoi(argv[5]);
+		data->to_dinner = ft_atoi(argv[5]);
 	else
-		data->have_to_dinner = 0;
+		data->to_dinner = 0;
 	data->forks = NULL;
 	data->philo = malloc(data->number_of_philos * sizeof(t_philo));
 	data->forks = malloc(data->number_of_philos * sizeof(pthread_mutex_t));
@@ -97,14 +97,15 @@ void	*routine(void *param)
 	return (NULL);
 }
 
-int		create_philo(t_data *data)
+int	create_philo(t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (++i < data->number_of_philos)
 	{
-		if (pthread_create(&data->philo[i].thread, NULL, &routine, &data->philo[i]) != 0)
+		if (pthread_create(&data->philo[i].thread, NULL, &routine,
+				&data->philo[i]) != 0)
 			return (error(PTHREAD_FAILURE));
 	}	
 	return (1);
@@ -114,11 +115,13 @@ int		create_philo(t_data *data)
 	data.print = tipo pthread_mutex_t
 	create_philo: realiza while para criar thread de cada philo
 	pthread_create: cria a thread do monitor
-	pthread_join: realiza um while para dar join em cada philo - aí dispara as threads
-	pthread_join_monitor: as threads começam a funcionar aqui, com o join as duas rotinas
+	pthread_join: realiza um while para dar join em cada philo
+		- aí dispara as threads
+	pthread_join_monitor: as threads começam a funcionar aqui, 
+		com o join as duas rotinas
 	acontecem: jantar e a verificação se alguém morreu
 */
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 	int		i;
@@ -137,5 +140,5 @@ int		main(int argc, char **argv)
 	pthread_join(data.monitor, NULL);
 	free(data.philo);
 	free(data.forks);
-	return (0);	
+	return (0);
 }

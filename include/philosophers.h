@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/09 05:00:08 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/10 23:53:02 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ struct			s_data
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				have_to_dinner;
+	int				to_dinner;
 	int				checker;
 	int				ate_dinner;
 	long int		start_dinner;
@@ -61,17 +61,19 @@ struct			s_data
 
 //error_check.c
 bool		error_check(int argc, char **argv);
-bool		error(char *message);
+int			ft_isdigit(int c);
 
 //utils.c
+bool		error(char *message);
 int			ft_atoi(const char *ptr);
-long int	get_time(void);
 void		ft_bzero(void *s, size_t n);
+double		philos_atoi(const char *ptr);
 
 //utils_dinner.c
+void		*died(void *param);
 void		*one_philo(t_philo *philo);
 void		eat(t_philo *philo);
-void		*died(void *param);
+long int	get_time(void);
 
 //print_status.c
 void		print_status(long int time_now, t_philo *philo, char *status);

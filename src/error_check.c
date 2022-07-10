@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:09:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/09 03:38:46 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/10 23:52:16 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static bool	is_out_of_range(double number)
 {
 	if (number > INT_MAX || number == 0)
 		return (true);
-	return (false);	
+	return (false);
 }
 
-static int	ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
@@ -32,21 +32,6 @@ static bool	only_digits(char **argv, int i, int j)
 		if (!ft_isdigit(argv[i][j]))
 			return (false);
 	return (true);
-	
-}
-
-static double	philos_atoi(const char *ptr)
-{
-	double	number;
-
-	number = 0;
-	while (ft_isdigit(*ptr))
-	{
-		number *= 10;
-		number += (*ptr - '0');
-		ptr++;
-	}
-	return (number);
 }
 
 static bool	only_unsigned_integers(int argc, char **argv, int i)
@@ -54,17 +39,11 @@ static bool	only_unsigned_integers(int argc, char **argv, int i)
 	while (++i < argc)
 	{
 		if (!only_digits(argv, i, -1))
-			return false;
+			return (false);
 		if (is_out_of_range(philos_atoi(argv[i])))
-		 	return false;
+			return (false);
 	}
 	return (true);
-}
-
-bool	error(char *message)
-{
-	printf("%s\n", message);
-	return (false);
 }
 
 bool	error_check(int argc, char **argv)
@@ -75,11 +54,3 @@ bool	error_check(int argc, char **argv)
 		return (error(NOT_UNINT));
 	return (true);
 }
-
-/*
-1 - Erros:
-	OK	- poucos ou muitos argumentos
-	OK	- não pode número negativo
-	OK apenas números (não pode letras)
-	OK número > 0 e < INTMAX	
-*/

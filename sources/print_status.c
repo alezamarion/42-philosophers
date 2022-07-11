@@ -6,11 +6,11 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:33:00 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/10 15:49:13 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/11 02:24:58 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
 void	print_status(long int time_now, t_philo *philo, char *status)
 {

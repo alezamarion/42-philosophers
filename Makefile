@@ -1,52 +1,41 @@
-# Source, Executable, Includes, Library Defines
-NAME	=	philo
-INCL	=	-I include
+SOURCES_FILES	=	philosophers.c
+SOURCES_FILES	+=	error_check.c print_status.c utils_dinner.c utils.c
 
-SRC_DIR =	./src
-SRC		=	error_check.c
+SOURCES_DIR		=	sources
 
-UTIL_DIR =	./utils
-UTILS	=	print_status.c utils_dinner.c utils.c
+OBJ_DIR			=	objects
 
-OBJ		=	./obj
+HEADER			=	$(SOURCES_DIR)/philo.h
 
-# Compiler, Linker Defines
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address #-lpthread
-RM		=	rm -rf
+SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
 
-all:	libfilo bin
+OBJECTS			=	$(SOURCES:$(SOURCES_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-libfilo:
-	$(CC) -c $(CFLAGS) $(SRC_DIR)/error_check.c $(INCL) -o $(OBJ)/error_check.o
-	$(CC) -c $(CFLAGS) $(UTIL_DIR)/print_status.c $(INCL) -o $(OBJ)/print_status.o
-	$(CC) -c $(CFLAGS) $(UTIL_DIR)/utils_dinner.c $(INCL) -o $(OBJ)/utils_dinner.o
-	$(CC) -c $(CFLAGS) $(UTIL_DIR)/utils.c $(INCL) -o $(OBJ)/utils.o
+NAME			=	philo
 
-bin:
-	$(CC) $(CFLAGS) $(SRC_DIR)/philosophers.c $(OBJ)/*.o $(INCL) -o philo
+CC				=	gcc
+RM				=	rm -rf
 
-# Compile and Assemble C Source Files into Object Files
+CFLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address
+LDFLAGS			=	-pthread
 
+$(OBJ_DIR)/%.o:		$(SOURCES_DIR)/%.c $(HEADER)
+					$(CC) $(CFLAGS) -c $< -o $@
 
-# Link all Object Files with external Libraries into Binaries
+all:				$(NAME)
 
+$(NAME):			$(OBJ_DIR) $(OBJECTS) $(HEADER)
+					$(CC) $(CFLAGS) $(OBJECTS) $(LDFLAGS) -o $(NAME)
 
-# Clean Up Objects, Exectuables, Dumps out of source directory
-clean: 
-	$(RM) $(OBJ)/*.o philo
+$(OBJ_DIR):
+					mkdir -p $(OBJ_DIR)
 
-re: clean all
+clean:
+					$(RM) $(OBJ_DIR)
 
-.PHONY: all clean fclean re bonus
+fclean:				clean
+					$(RM) $(NAME)
 
-#make --debug=b
+re:					fclean all
 
-#$@ relaciona-se com o alvo e $^ relaciona-se com todos pŕe-requisitos.
-
-#target	:	prerequisites
-#	recipe
-# target: nome da ação que deseja executar ou usualmente o nome do arquivo que se queira produzir
-# prerequisitos são os arquivos que são usados como input para criar o target
-# receita é a ação que o comando make realiza - o TAB antes da receita é interpretado pelo make como 
-#	indicação de começo de comando a ser executado
+.PHONY:				all clean fclean re bonus

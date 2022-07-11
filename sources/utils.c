@@ -6,11 +6,11 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:22:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/10 23:51:53 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/11 02:24:52 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
 bool	error(char *message)
 {
@@ -56,17 +56,6 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
-
-/*
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= 2147483647)
-	{
-		return (0);
-	}
-	return (1);
-}
-*/
 
 double	philos_atoi(const char *ptr)
 {

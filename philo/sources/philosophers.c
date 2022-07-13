@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/13 16:05:51 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/13 22:22:00 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ void	start_struct(t_data *data, int argc, char **argv)
 	data->forks = NULL;
 	data->philo = malloc(data->number_of_philos * sizeof(t_philo));
 	data->forks = malloc(data->number_of_philos * sizeof(pthread_mutex_t));
+	if (data->forks == NULL || data->philo == NULL)
+	{
+		printf("Could not malloc struct\n")//aqui printa return (error(MALLOC_FAILURE);-----------------------------------------------------
+		EXIT_FAILURE; //---------------ver aqui
+	}
 	data->ate_dinner = 0;
 	ft_bzero(data->philo, sizeof(t_philo));
 	return (philo_info(data));
@@ -84,7 +89,7 @@ void	*routine(void *param) //mutex aqui
 	philo = param;
 	if (philo->struct_data->number_of_philos == 1)
 		return (one_philo(philo));
-	while (philo->struct_data->checker != 1)
+	while (true)
 	{
 		if (philo->philo_id % 2 == 0) //estava fora do loop
 			usleep(1000);
@@ -92,7 +97,13 @@ void	*routine(void *param) //mutex aqui
 		print_status(get_time(), philo, "is sleeping");
 		usleep(philo->struct_data->time_to_sleep * 1000); //***//
 		print_status(get_time(), philo, "is thinking");
-		philo->had_dinner++;
+		pthread_mutex_lock(&philo->struct_data->m_checker);
+		if (philo->struct_data->checker == 1)
+		{
+			pthread_mutex_unlock(&philo->struct_data->m_checker);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->struct_data->m_checker);
 	}
 	return (NULL);
 }
@@ -128,15 +139,17 @@ int	main(int argc, char **argv)
 	t_data	data;
 	int		i;
 
-	i = 0;
+	i = -1;
+	pthread_mutex_init(&data.meal, NULL);	// mutex_destroy é inevitável?
 	pthread_mutex_init(&data.print, NULL);	// mutex_destroy é inevitável?
+	pthread_mutex_init(&data.m_checker, NULL);	// mutex_destroy é inevitável?
 	if (!error_check(argc, argv))			// quantidade de argumentos e integer > 0
 		return (EXIT_FAILURE);
 	data.start_dinner = get_time();			// pegar o tempo de início em ms
 	start_struct(&data, argc, argv);
+	create_philo(&data);
 	if (pthread_create(&data.monitor, NULL, &died, &data) != 0)
 		return (error(PTHREAD_FAILURE));
-	create_philo(&data);
 	if (pthread_join(data.monitor, NULL) != 0)
 		return (error(JOIN_FAILURE));   
 	while (++i < data.number_of_philos)
@@ -146,7 +159,11 @@ int	main(int argc, char **argv)
 	}
 	usleep(1000); //para não acessar o free antes de terminar tudo
 	pthread_mutex_destroy(&data.print);
-//	pthread_mutex_destroy(&data.forks);
+	pthread_mutex_destroy(&data.meal);
+	pthread_mutex_destroy(&data.m_checker);
+	i = -1;
+	while (++i < data.number_of_philos)
+		ptread_mutex_destroy(&data.forks[i]);
 	free(data.philo);
 	free(data.forks);
 	return (0);

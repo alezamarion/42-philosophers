@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/12 04:34:35 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:42:24 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	start_struct(t_data *data, int argc, char **argv)
 	checker 1 == alguém morreu -> vai comer, dormir e pensar
 	usleep: dorme pelo tempo que passou na linha de comando
 */
-void	*routine(void *param)
+void	*routine(void *param) //mutex aqui
 {
 	t_philo	*philo;
 
@@ -137,10 +137,16 @@ int	main(int argc, char **argv)
 	create_philo(&data);
 	if (pthread_create(&data.monitor, NULL, &died, &data) != 0)
 		return (error(PTHREAD_FAILURE));
-	pthread_join(data.monitor, NULL);   		//jogamos para cima
+	if (pthread_join(data.monitor, NULL) != 0)
+		return (error(JOIN_FAILURE));   
 	while (++i < data.number_of_philos)
-		pthread_join(data.philo[i].thread, NULL);
+	{
+		if(pthread_join(data.philo[i].thread, NULL) != 0)
+			return(error(JOIN_FAILURE));		
+	}
 	usleep(1000); //para não acessar o free antes de terminar tudo
+	pthread_mutex_destroy(&data.print);
+//	pthread_mutex_destroy(&data.forks);
 	free(data.philo);
 	free(data.forks);
 	return (0);

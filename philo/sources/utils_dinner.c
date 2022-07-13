@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/12 03:47:09 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:37:28 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ void	*died(void *param) // cada thread acessa a sua variável | nao dá data rac
 	return (NULL);
 }
 
-void	*one_philo(t_philo *philo)
+void	*one_philo(t_philo *philo) //colocamos o unlock antes do return
 {
 	pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
 	philo->last_dinner = get_time();
 	print_status(get_time(), philo, "has taken a fork");
-	pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
 	usleep(philo->struct_data->time_to_die * 1000); //*****
 	print_status(get_time(), philo, "DIED");
 	philo->struct_data->checker = 1;
+	pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
 	return (NULL);
 }
 

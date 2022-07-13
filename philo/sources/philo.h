@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/13 15:42:49 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:01:39 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define NOT_UNINT "Arguments must be integers greater than 0"
 # define PTHREAD_FAILURE "Could not create thread" 
 # define JOIN_FAILURE "Could not join thread"
+
 typedef struct s_data	t_data;
 
 typedef struct s_philo

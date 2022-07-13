@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/13 15:42:24 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/13 16:05:51 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,9 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	data.start_dinner = get_time();			// pegar o tempo de início em ms
 	start_struct(&data, argc, argv);
-	create_philo(&data);
 	if (pthread_create(&data.monitor, NULL, &died, &data) != 0)
 		return (error(PTHREAD_FAILURE));
+	create_philo(&data);
 	if (pthread_join(data.monitor, NULL) != 0)
 		return (error(JOIN_FAILURE));   
 	while (++i < data.number_of_philos)

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   mutex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 03:05:46 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 04:15:11 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:02:13 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	mutex_init(t_data *data)
+void	init_mutex(t_data *data)
 {
 	pthread_mutex_init(&data->meal, NULL);
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->m_checker, NULL);
 }
 
-void	mutex_destroy(t_data *data)
+void	destroy_mutex(t_data *data)
 {
 	int	i;
 
@@ -31,18 +31,30 @@ void	mutex_destroy(t_data *data)
 		pthread_mutex_destroy(&data->forks[i]);
 }
 
-void	philo_satisfied(t_data *data)
+void	mutex_lock_fork(t_philo *philo)
 {
-	pthread_mutex_lock(&data->m_checker);
-	data->checker = 1;
-	pthread_mutex_unlock(&data->m_checker);
+	if (philo->philo_id == philo->struct_data->number_of_philos)
+	{
+		pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
+		pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
+		pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
+	}
 }
 
-void	philo_died(t_data *data, int i)
+void	mutex_unlock_fork(t_philo *philo)
 {
-	print_status(get_time(), data->philo + i, "DIED");
-	pthread_mutex_lock(&data->m_checker);
-	data->checker = 1;
-	pthread_mutex_unlock(&data->m_checker);
-	pthread_mutex_unlock(&data->meal);
+	if (philo->philo_id == philo->struct_data->number_of_philos)
+	{
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
+	}
 }

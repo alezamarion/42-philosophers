@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 04:38:41 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:28:05 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,20 @@ int			ft_atoi(const char *ptr);
 void		ft_bzero(void *s, size_t n);
 double		philos_atoi(const char *ptr);
 
-//utils2.c
-void		mutex_init(t_data *data);
-void		mutex_destroy(t_data *data);
-void		philo_satisfied(t_data *data);
-void		philo_died(t_data *data, int i);
-
 //utils_dinner.c
 void		*died(void *param);
 void		*one_philo(t_philo *philo);
 void		eat(t_philo *philo);
 long int	get_time(void);
 
-//print_status.c
+//mutex.c
+void		init_mutex(t_data *data);
+void		destroy_mutex(t_data *data);
+void		mutex_lock_fork(t_philo *philo);
+void		mutex_unlock_fork(t_philo *philo);
+
+//philo_status.c
 void		print_status(long int time_now, t_philo *philo, char *status);
+int			is_a_death_philo(t_data *data, int i);
 
 #endif

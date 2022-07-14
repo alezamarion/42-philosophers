@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 04:56:22 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:58:29 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ void	*routine(void *param)
 		return (one_philo(philo));
 	while (true)
 	{
-		if (philo->philo_id % 2 == 1)
+		if (philo->philo_id % 2 == 0)
 			usleep(1600);
 		eat(philo);
-		print_status(get_time(), philo, "is sleeping");
+		print_status(get_time(), philo, "is sleeping 💤");
 		usleep(philo->struct_data->time_to_sleep);
-		print_status(get_time(), philo, "is thinking");
+		print_status(get_time(), philo, "is thinking 🤔");
 		pthread_mutex_lock(&philo->struct_data->m_checker);
 		if (philo->struct_data->checker == 1)
 		{
@@ -141,7 +141,7 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = -1;
-	mutex_init(&data);
+	init_mutex(&data);
 	if (!error_check(argc, argv))
 		return (EXIT_FAILURE);
 	data.start_dinner = get_time();
@@ -157,7 +157,7 @@ int	main(int argc, char **argv)
 			return (error(JOIN_FAILURE));
 	}
 	usleep(1000);
-	mutex_destroy(&data);
+	destroy_mutex(&data);
 	free(data.philo);
 	free(data.forks);
 	return (0);

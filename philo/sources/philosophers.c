@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 03:45:38 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 04:56:22 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	start_struct(t_data *data, int argc, char **argv)
 {																		
 	data->number_of_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
+	data->time_to_eat = ft_atoi(argv[3]) * 1000;
+	data->time_to_sleep = ft_atoi(argv[4]) * 1000;
 	if (argc > 5)
 		data->to_dinner = ft_atoi(argv[5]);
 	else
@@ -91,11 +91,11 @@ void	*routine(void *param)
 		return (one_philo(philo));
 	while (true)
 	{
-		if (philo->philo_id % 2 == 0)
-			usleep(1000);
+		if (philo->philo_id % 2 == 1)
+			usleep(1600);
 		eat(philo);
 		print_status(get_time(), philo, "is sleeping");
-		usleep(philo->struct_data->time_to_sleep * 1000);
+		usleep(philo->struct_data->time_to_sleep);
 		print_status(get_time(), philo, "is thinking");
 		pthread_mutex_lock(&philo->struct_data->m_checker);
 		if (philo->struct_data->checker == 1)

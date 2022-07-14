@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 04:15:43 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 04:38:41 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_philo
 	int				philo_id;
 	int				had_dinner;
 	long int		last_dinner;
+	bool			eating;
 	pthread_mutex_t	mutex;
 	pthread_t		thread;
 	t_data			*struct_data;

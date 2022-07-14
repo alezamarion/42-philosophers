@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 04:21:56 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 05:05:23 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,12 @@ void	*died(void *param)
 			philo_died(data, i);
 			return (NULL);
 		}
-		if (data->philo[i].had_dinner == data->to_dinner && data->to_dinner > 0)
+		if (data->philo[i].had_dinner == data->to_dinner
+			&& data->to_dinner > 0 && data->philo[i].eating)
+		{
 			data->ate_dinner++;
+			data->philo[i].eating = 0;
+		}
 		pthread_mutex_unlock(&data->meal);
 		if (data->ate_dinner == data->number_of_philos)
 		{
@@ -86,12 +90,13 @@ void	eat(t_philo *philo)
 		pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
 	}
 	pthread_mutex_lock(&philo->struct_data->meal);
+	philo->eating = 1;
 	philo->last_dinner = get_time();
 	pthread_mutex_unlock(&philo->struct_data->meal);
 	print_status(get_time(), philo, "has taken a fork");
 	print_status(get_time(), philo, "has taken a fork");
 	print_status(get_time(), philo, "is eating");
-	usleep(philo->struct_data->time_to_eat * 1000);
+	usleep(philo->struct_data->time_to_eat);
 	pthread_mutex_lock(&philo->struct_data->meal);
 	philo->had_dinner++;
 	pthread_mutex_unlock(&philo->struct_data->meal);

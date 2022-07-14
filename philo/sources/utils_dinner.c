@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/12 21:37:28 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 02:27:21 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,24 @@ void	*died(void *param) // cada thread acessa a sua variável | nao dá data rac
 	i = -1;
 	while (++i < data->number_of_philos)
 	{
+		pthread_mutex_lock(&data->meal);
 		if (get_time() - data->philo[i].last_dinner > data->time_to_die)
 		{
-			print_status(get_time(), data->philo + i, "DIED"); //***
+			print_status(get_time(), data->philo + i, "DIED");
+			pthread_mutex_lock(&data->m_checker);
 			data->checker = 1;
+			pthread_mutex_unlock(&data->m_checker);
+			pthread_mutex_unlock(&data->meal);
 			return (NULL);
 		}
 		if (data->philo[i].had_dinner == data->to_dinner && data->to_dinner > 0)
 			data->ate_dinner++;
+		pthread_mutex_unlock(&data->meal);
 		if (data->ate_dinner == data->number_of_philos)
 		{
+			pthread_mutex_lock(&data->m_checker);
 			data->checker = 1;
+			pthread_mutex_unlock(&data->m_checker);
 			return (NULL);
 		}
 		if (i + 1 == data->number_of_philos)
@@ -53,13 +60,16 @@ void	*died(void *param) // cada thread acessa a sua variável | nao dá data rac
 
 void	*one_philo(t_philo *philo) //colocamos o unlock antes do return
 {
-	pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
+	pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
+	pthread_mutex_lock(&philo->struct_data->meal);
 	philo->last_dinner = get_time();
+	pthread_mutex_unlock(&philo->struct_data->meal);
 	print_status(get_time(), philo, "has taken a fork");
-	usleep(philo->struct_data->time_to_die * 1000); //*****
+	pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);
 	print_status(get_time(), philo, "DIED");
+	pthread_mutex_lock(&philo->struct_data->m_checker);
 	philo->struct_data->checker = 1;
-	pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
+	pthread_mutex_unlock(&philo->struct_data->m_checker);
 	return (NULL);
 }
 
@@ -70,15 +80,36 @@ void	*one_philo(t_philo *philo) //colocamos o unlock antes do return
 */
 void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
-	pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
+	if (philo->_id == philo->struct_data->number_of_philos)
+	{
+		pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
+		pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);		
+		pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
+	}
+	pthread_mutex_lock(&philo->struct_data->meal);
 	philo->last_dinner = get_time();
+	pthread_mutex_unlock(&philo->struct_data->meal);
 	print_status(get_time(), philo, "has taken a fork");
 	print_status(get_time(), philo, "has taken a fork");
 	print_status(get_time(), philo, "is eating");
 	usleep(philo->struct_data->time_to_eat * 1000);
-	pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);
-	pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
+	pthread_mutex_lock(&philo->struct_data->meal);
+	philo->had_dinner++;
+	pthread_mutex_unlock(&philo->struct_data->meal);
+	if (philo->_id == philo->struct_data->number_of_philos)
+	{
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);		
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
+	}
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:22:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/11 02:24:52 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:10:40 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,14 @@ double	philos_atoi(const char *ptr)
 		ptr++;
 	}
 	return (number);
+}
+
+long int	get_time(void)
+{
+	struct timeval	tv;
+	long int		milliseconds;
+
+	gettimeofday(&tv, NULL);
+	milliseconds = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (milliseconds);
 }

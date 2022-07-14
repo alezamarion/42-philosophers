@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 14:04:57 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:12:53 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,13 @@ bool		error(char *message);
 int			ft_atoi(const char *ptr);
 void		ft_bzero(void *s, size_t n);
 double		philos_atoi(const char *ptr);
+long int	get_time(void);
 
 //utils_dinner.c
 void		*died(void *param);
 void		*one_philo(t_philo *philo);
 void		eat(t_philo *philo);
-long int	get_time(void);
+void		*routine(void *param);
 
 //mutex.c
 void		init_mutex(t_data *data);

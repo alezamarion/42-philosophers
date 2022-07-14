@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 02:59:42 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 04:21:56 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 	dá usleep?
 	return (NULL)?
 */
+
 void	*died(void *param)
 {
 	int		i;
@@ -34,11 +35,7 @@ void	*died(void *param)
 		pthread_mutex_lock(&data->meal);
 		if (get_time() - data->philo[i].last_dinner > data->time_to_die)
 		{
-			print_status(get_time(), data->philo + i, "DIED");
-			pthread_mutex_lock(&data->m_checker);
-			data->checker = 1;
-			pthread_mutex_unlock(&data->m_checker);
-			pthread_mutex_unlock(&data->meal);
+			philo_died(data, i);
 			return (NULL);
 		}
 		if (data->philo[i].had_dinner == data->to_dinner && data->to_dinner > 0)
@@ -46,9 +43,7 @@ void	*died(void *param)
 		pthread_mutex_unlock(&data->meal);
 		if (data->ate_dinner == data->number_of_philos)
 		{
-			pthread_mutex_lock(&data->m_checker);
-			data->checker = 1;
-			pthread_mutex_unlock(&data->m_checker);
+			philo_satisfied(data);
 			return (NULL);
 		}
 		if (i + 1 == data->number_of_philos)

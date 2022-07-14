@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 03:35:45 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 04:15:43 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ double		philos_atoi(const char *ptr);
 //utils2.c
 void		mutex_init(t_data *data);
 void		mutex_destroy(t_data *data);
+void		philo_satisfied(t_data *data);
+void		philo_died(t_data *data, int i);
 
 //utils_dinner.c
 void		*died(void *param);

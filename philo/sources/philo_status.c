@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:33:00 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 13:53:57 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:07:54 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ int	is_a_death_philo(t_data *data, int i)
 		data->checker = 1;
 		pthread_mutex_unlock(&data->m_checker);
 		pthread_mutex_unlock(&data->meal);
+		return (1);
+	}
+	return (0);
+}
+
+int	all_philo_satisfied(t_data *data)
+{
+	if (data->ate_dinner == data->number_of_philos)
+	{
+		pthread_mutex_lock(&data->m_checker);
+		data->checker = 1;
+		pthread_mutex_unlock(&data->m_checker);
 		return (1);
 	}
 	return (0);

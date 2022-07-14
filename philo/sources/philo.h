@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 13:28:05 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:04:57 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void		mutex_unlock_fork(t_philo *philo);
 //philo_status.c
 void		print_status(long int time_now, t_philo *philo, char *status);
 int			is_a_death_philo(t_data *data, int i);
+int			all_philo_satisfied(t_data *data);
 
 #endif

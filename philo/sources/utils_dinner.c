@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 13:57:32 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:05:08 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,8 @@ void	*died(void *param)
 			data->philo[i].eating = 0;
 		}
 		pthread_mutex_unlock(&data->meal);
-		if (data->ate_dinner == data->number_of_philos)
-		{
-			pthread_mutex_lock(&data->m_checker);
-			data->checker = 1;
-			pthread_mutex_unlock(&data->m_checker);
+		if (all_philo_satisfied(data))
 			return (NULL);
-		}
 		if (i + 1 == data->number_of_philos)
 			i = -1;
 		usleep (1000);

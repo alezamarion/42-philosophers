@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:43:01 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/13 22:22:00 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 03:36:31 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	start_struct(t_data *data, int argc, char **argv)
 	data->forks = malloc(data->number_of_philos * sizeof(pthread_mutex_t));
 	if (data->forks == NULL || data->philo == NULL)
 	{
-		printf("Could not malloc struct\n")//aqui printa return (error(MALLOC_FAILURE);-----------------------------------------------------
-		EXIT_FAILURE; //---------------ver aqui
+		printf("Could not malloc struct\n");
+		return ;
 	}
 	data->ate_dinner = 0;
 	ft_bzero(data->philo, sizeof(t_philo));
@@ -82,7 +82,7 @@ void	start_struct(t_data *data, int argc, char **argv)
 	checker 1 == alguém morreu -> vai comer, dormir e pensar
 	usleep: dorme pelo tempo que passou na linha de comando
 */
-void	*routine(void *param) //mutex aqui
+void	*routine(void *param)
 {
 	t_philo	*philo;
 
@@ -91,11 +91,11 @@ void	*routine(void *param) //mutex aqui
 		return (one_philo(philo));
 	while (true)
 	{
-		if (philo->philo_id % 2 == 0) //estava fora do loop
+		if (philo->philo_id % 2 == 0)
 			usleep(1000);
 		eat(philo);
 		print_status(get_time(), philo, "is sleeping");
-		usleep(philo->struct_data->time_to_sleep * 1000); //***//
+		usleep(philo->struct_data->time_to_sleep * 1000);
 		print_status(get_time(), philo, "is thinking");
 		pthread_mutex_lock(&philo->struct_data->m_checker);
 		if (philo->struct_data->checker == 1)
@@ -134,42 +134,47 @@ int	create_philo(t_data *data)
 		com o join as duas rotinas
 	acontecem: jantar e a verificação se alguém morreu
 */
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 	int		i;
 
 	i = -1;
-	pthread_mutex_init(&data.meal, NULL);	// mutex_destroy é inevitável?
-	pthread_mutex_init(&data.print, NULL);	// mutex_destroy é inevitável?
-	pthread_mutex_init(&data.m_checker, NULL);	// mutex_destroy é inevitável?
-	if (!error_check(argc, argv))			// quantidade de argumentos e integer > 0
+	mutex_init(&data);
+	if (!error_check(argc, argv))
 		return (EXIT_FAILURE);
-	data.start_dinner = get_time();			// pegar o tempo de início em ms
+	data.start_dinner = get_time();
 	start_struct(&data, argc, argv);
 	create_philo(&data);
 	if (pthread_create(&data.monitor, NULL, &died, &data) != 0)
 		return (error(PTHREAD_FAILURE));
 	if (pthread_join(data.monitor, NULL) != 0)
-		return (error(JOIN_FAILURE));   
+		return (error(JOIN_FAILURE));
 	while (++i < data.number_of_philos)
 	{
-		if(pthread_join(data.philo[i].thread, NULL) != 0)
-			return(error(JOIN_FAILURE));		
+		if (pthread_join(data.philo[i].thread, NULL) != 0)
+			return (error(JOIN_FAILURE));
 	}
-	usleep(1000); //para não acessar o free antes de terminar tudo
-	pthread_mutex_destroy(&data.print);
-	pthread_mutex_destroy(&data.meal);
-	pthread_mutex_destroy(&data.m_checker);
+	usleep(1000);
+	mutex_destroy(&data);
 	i = -1;
 	while (++i < data.number_of_philos)
-		ptread_mutex_destroy(&data.forks[i]);
+		pthread_mutex_destroy(&data.forks[i]);
 	free(data.philo);
 	free(data.forks);
 	return (0);
 }
 
 /*
+	Ajustar:
+	1 800 200 200	: OK should not eat and die
+	5 800 200 200 	: OK no one should die
+	5 800 200 200 7 : apenas 34 comem
+	4 410 200 200	: um philo morre (não deveria)
+	4 310 200 100	: OK um philo deve morrer
+	2 310 200 100	: OK death delayed no more than 10ms
+	
 	1 - debugar
 	2 - Makefile
 	3 - Data Race: estudar e testar com Valgrind

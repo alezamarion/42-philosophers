@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/13 22:25:17 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 03:35:45 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # define NOT_UNINT "Arguments must be integers greater than 0"
 # define PTHREAD_FAILURE "Could not create thread" 
 # define JOIN_FAILURE "Could not join thread"
-//# define MALLOC_FAILURE "Could not malloc struct"
 
 typedef struct s_data	t_data;
 
@@ -72,6 +71,10 @@ bool		error(char *message);
 int			ft_atoi(const char *ptr);
 void		ft_bzero(void *s, size_t n);
 double		philos_atoi(const char *ptr);
+
+//utils2.c
+void		mutex_init(t_data *data);
+void		mutex_destroy(t_data *data);
 
 //utils_dinner.c
 void		*died(void *param);

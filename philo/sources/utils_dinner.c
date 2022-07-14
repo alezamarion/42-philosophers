@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 02:36:39 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/14 02:27:21 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/14 02:59:42 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 	dá usleep?
 	return (NULL)?
 */
-void	*died(void *param) // cada thread acessa a sua variável | nao dá data race
+void	*died(void *param)
 {
 	int		i;
 	t_data	*data;
@@ -58,7 +58,7 @@ void	*died(void *param) // cada thread acessa a sua variável | nao dá data rac
 	return (NULL);
 }
 
-void	*one_philo(t_philo *philo) //colocamos o unlock antes do return
+void	*one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
 	pthread_mutex_lock(&philo->struct_data->meal);
@@ -80,14 +80,14 @@ void	*one_philo(t_philo *philo) //colocamos o unlock antes do return
 */
 void	eat(t_philo *philo)
 {
-	if (philo->_id == philo->struct_data->number_of_philos)
+	if (philo->philo_id == philo->struct_data->number_of_philos)
 	{
 		pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
 		pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
 	}
 	else
 	{
-		pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);		
+		pthread_mutex_lock(&philo->struct_data->forks[philo->left_fork]);
 		pthread_mutex_lock(&philo->struct_data->forks[philo->right_fork]);
 	}
 	pthread_mutex_lock(&philo->struct_data->meal);
@@ -100,14 +100,14 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(&philo->struct_data->meal);
 	philo->had_dinner++;
 	pthread_mutex_unlock(&philo->struct_data->meal);
-	if (philo->_id == philo->struct_data->number_of_philos)
+	if (philo->philo_id == philo->struct_data->number_of_philos)
 	{
 		pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
 		pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);		
+		pthread_mutex_unlock(&philo->struct_data->forks[philo->left_fork]);
 		pthread_mutex_unlock(&philo->struct_data->forks[philo->right_fork]);
 	}
 }
@@ -131,6 +131,6 @@ long int	get_time(void)
 	long int		milliseconds;
 
 	gettimeofday(&tv, NULL);
-	milliseconds = tv.tv_sec * 1000 + tv.tv_usec / 1000; //fórmula para achar ms
+	milliseconds = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (milliseconds);
 }

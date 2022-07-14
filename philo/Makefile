@@ -1,5 +1,5 @@
 SOURCES_FILES	=	philosophers.c
-SOURCES_FILES	+=	error_check.c print_status.c utils_dinner.c utils.c
+SOURCES_FILES	+=	error_check.c print_status.c utils_dinner.c utils.c utils2.c
 
 SOURCES_DIR		=	sources
 
@@ -16,8 +16,8 @@ NAME			=	philo
 CC				=	gcc
 RM				=	rm -rf
 
-CFLAGS			=	-Wall -Wextra -Werror -g  -fsanitize=thread 
-#CFLAGS			=	-Wall -Wextra -Werror -g  -fsanitize=address
+#CFLAGS			=	-Wall -Wextra -Werror -g  -fsanitize=thread 
+CFLAGS			=	-Wall -Wextra -Werror -g  -fsanitize=address
 LDFLAGS			=	-pthread
 
 $(OBJ_DIR)/%.o:		$(SOURCES_DIR)/%.c $(HEADER)

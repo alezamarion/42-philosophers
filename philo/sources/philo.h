@@ -6,7 +6,7 @@
 /*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 03:08:50 by azamario          #+#    #+#             */
-/*   Updated: 2022/07/19 23:14:20 by azamario         ###   ########.fr       */
+/*   Updated: 2022/07/23 02:19:38 by azamario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ struct			s_data
 	pthread_mutex_t	print;
 };
 
-//error_check.c
-bool		error_check(int argc, char **argv);
-int			ft_isdigit(int c);
-
 //utils.c
 bool		error(char *message);
 int			ft_atoi(const char *ptr);
@@ -79,6 +75,10 @@ void		*died(void *param);
 void		*one_philo(t_philo *philo);
 void		eat(t_philo *philo);
 void		*routine(void *param);
+
+//error_check.c
+bool		error_check(int argc, char **argv);
+int			ft_isdigit(int c);
 
 //mutex.c
 void		init_mutex(t_data *data);

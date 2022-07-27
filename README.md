@@ -39,6 +39,7 @@ Um ou mais filósofos estão sentados em uma mesa redonda fazendo uma das três 
 • A simulação para quando um filósofo morre.
 
 Badge
+________________
 
 
 Skills

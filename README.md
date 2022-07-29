@@ -5,6 +5,7 @@ Thread is the keyword of this project! Philosophres dynamics are resolved using 
 
 Thread é a palavra chave desse projeto! A dinamica dos Philosophres é resolvida usando threads e mutex. Uma thread separada foi implementada para o monitoramento do Philosophers,para verificar se algum filósofo morreu e avisa os outros que precisam parar imediatamente.
 
+
 Problem to solve
 One or more philosophers are sitting at a round table doing one of three things: eating, thinking, or sleeping.
 • While eating, they are not thinking or sleeping, while sleeping, they are not eating or thinking and of course, while thinking, they are not eating or sleeping.

@@ -62,32 +62,26 @@ Um ou mais filósofos estão sentados em uma mesa redonda fazendo uma das três 
 
 
 🚧 project:<br/>
-
-## Access the folder philo for the program that uses threads and mutex
-cd philo<br/>
-
-## Compile the program with
-make<br/>
-
-## Run the program
-./philo 5 800 200 200 7 <br/>
-
-## Clean output objects with
-philo$ make fclean
-
+```
+Access the folder philo for the program that uses threads and mutex: cd philo
+```
 :shower: Clean Obj files:<br/>
-
-philo$ make clean<br/>
-
+```
+make clean
+```
 :shower: :shower: Clean All (obj files + binary):<br/>
-
-philo$ make fclean<br/>
-
+```
+make fclean
+```
 :shower: :shower: 🚧 Clean All + build:<br/>
-
-philo$ make re <br/>
-
-See Makefile<br/>
+```
+make re
+```
+:shower: :shower: 🚧 Run the program:<br/>
+```
+./philo 5 800 200 200 7 <br/>
+```
+See Makefile<br/><br>
 
 ### Made with: <br/>
 

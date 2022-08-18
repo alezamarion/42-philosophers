@@ -64,30 +64,30 @@ Um ou mais filósofos estão sentados em uma mesa redonda fazendo uma das três 
 🚧 project:<br/>
 
 ## Access the folder philo for the program that uses threads and mutex
-cd philo
+cd philo<br/>
 
 ## Compile the program with
-make
+make<br/>
 
 ## Run the program
-./philo 5 800 200 200 7 
+./philo 5 800 200 200 7 <br/>
 
 ## Clean output objects with
 philo$ make fclean
 
 :shower: Clean Obj files:<br/>
 
-philo$ make clean
+philo$ make clean<br/>
 
 :shower: :shower: Clean All (obj files + binary):<br/>
 
-philo$ make fclean
+philo$ make fclean<br/>
 
 :shower: :shower: 🚧 Clean All + build:<br/>
 
-philo$ make re 
+philo$ make re <br/>
 
-<br/>See Makefile<br/>
+See Makefile<br/>
 
 ### Made with: <br/>
 
